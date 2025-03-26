@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Sınav Seçimi{% endblock %}
+{% block content %}
+<h2>Sınav Konusu Seçiniz</h2>
+<ul>
+  <li><a href="{{ url_for('exam', subject='Python') }}">Python Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='Java') }}">Java Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='Javascript') }}">Javascript Sınavı</a></li>
+</ul>
+{% endblock %}

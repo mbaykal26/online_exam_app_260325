@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Flask",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/app.py",  // Replace with your Flask app file
+            "args": [
+                "run",
+                "--no-debugger",  // Prevent conflicts between Flask's debugger and VS Code's debugger
+                "--no-reload"
+            ],
+            "jinja": true,
+            "env": {
+                "FLASK_APP": "app.py",  // Your Flask app filename
+                "FLASK_ENV": "development",  // Enables development mode
+                "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"2.0"
+            },
+            "console": "integratedTerminal"
+        }
+    ]
+}

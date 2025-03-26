@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Giriş - Online Sınav{% endblock %}
+{% block content %}
+<h2>Giriş Yap</h2>
+{% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
+<form method="POST" action="{{ url_for('login') }}">
+  <p>
+    <label for="email">E-posta:</label><br>
+    <input type="email" id="email" name="email" required>
+  </p>
+  <p>
+    <label for="sifre">Şifre:</label><br>
+    <input type="password" id="sifre" name="sifre" required>
+  </p>
+  <p>
+    <button type="submit">Giriş Yap</button>
+  </p>
+</form>
+
+
+{% endblock %}

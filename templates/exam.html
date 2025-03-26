@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ subject }} Sınavı{% endblock %}
+{% block content %}
+<h2>{{ subject }} Sınavı</h2>
+<form method="POST" action="{{ url_for('exam', subject=subject) }}">
+  {% for soru in sorular %}
+    <div class="soru">
+      <p><strong>Soru {{ loop.index }}:</strong> {{ soru.soru_metni }}</p>
+      {% set option_labels = ['A)', 'B)', 'C)', 'D)', 'E)'] %}
+      {% for secenek in soru.secenekler.split(';') %}
+        {% set secenek_value = secenek | trim %}
+        <label>
+          <input type="radio" name="cevap_{{ soru.id }}" value="{{ secenek_value }}">
+          {{ secenek_value }}
+        </label><br>
+      {% endfor %}
+    </div>
+  {% endfor %}
+  <br>
+  <button type="submit" style="margin-bottom: 20px;" >Sınavı Bitir</button>
+</form>
+{% endblock %}
