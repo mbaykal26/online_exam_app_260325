@@ -1,10 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Sınav Seçimi{% endblock %}
 {% block content %}
-<h2>Sınav Konusu Seçiniz</h2>
-<ul>
-  <li><a href="{{ url_for('exam', subject='Python') }}">Python Sınavı</a></li>
-  <li><a href="{{ url_for('exam', subject='Java') }}">Java Sınavı</a></li>
-  <li><a href="{{ url_for('exam', subject='Javascript') }}">Javascript Sınavı</a></li>
-</ul>
+  <h2 class="text-center my-4">Sınav Konusu Seçiniz</h2>
+
+  <!-- Collapsible link for IT Mülakat Sınavları -->
+  <div class="text-center mb-4">
+    <a class="btn btn-primary" data-toggle="collapse" href="#examTopicsCollapse" role="button" 
+       aria-expanded="false" aria-controls="examTopicsCollapse">
+      IT Mülakat Sınavları
+    </a>
+  </div>
+
+  <!-- Collapsed content: List of exam topics -->
+  <div class="collapse" id="examTopicsCollapse">
+    <div class="card card-body">
+      <ul class="list-unstyled" style="font-size: 1.5em;">
+        <li><a href="{{ url_for('exam', subject='Python') }}">Python Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='Java') }}">Java Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='JavaScript') }}">JavaScript Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='C') }}">C Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='C++') }}">C++ Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='Golang') }}">Golang Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='C#') }}">C# Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='SQL') }}">SQL Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='HTML') }}">HTML Sınavı</a></li>
+        <li><a href="{{ url_for('exam', subject='CSS') }}">CSS Sınavı</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Button to enter the game -->
+  <!--<div class="text-center mt-4">
+    <a href="{{ url_for('game') }}" class="btn btn-lg btn-secondary">
+      Oyun Oyna
+    </a>
+  </div> -->
 {% endblock %}

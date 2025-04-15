@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} - Online Sınav{% endblock %}
+{% block content %}
+<div class="blog-container" style="width:50%; margin:0 auto; border:1px solid #ccc; padding:20px; box-shadow:2px 2px 5px rgba(0,0,0,0.1);">
+  <h2 style="text-align:center;">{{ post.title }}</h2>
+  <div>
+    {{ post.content | safe }}
+  </div>
+  {% if post.filename %}
+    {% set ext = post.filename.rsplit('.', 1)[1].lower() %}
+    {% if post.filetype == 'pdf' %}
+      <iframe src="{{ url_for('static', filename='uploads/' ~ post.filename) }}" width="100%" height="400"></iframe>
+    {% elif post.filetype == 'document' %}
+      <p style="text-align: center;">
+        <a class="download-link" href="{{ url_for('view_file', filename=post.filename) }}" target="_blank">
+          Dosyayı İndirmek için Tıklayın
+        </a>
+      </p>
+    {% elif post.filetype == 'image' %}
+      <img src="{{ url_for('static', filename='uploads/' ~ post.filename) }}" alt="Blog image" style="max-width:100%;">
+    {% else %}
+      <a href="{{ url_for('static', filename='uploads/' ~ post.filename) }}" target="_blank">Dosyayı Görüntüle</a>
+    {% endif %}
+  {% endif %}
+  <div style="margin-top:10px; text-align:center;">
+    <small>{{ post.created_at }}</small>
+    {% if post.author_name %}
+      &nbsp;–&nbsp;<strong>{{ post.author_name }}</strong>
+    {% endif %}
+  </div>
+  
+  <!-- Comment Section -->
+  <div style="margin-top:30px;">
+    <h3>Yorumlar</h3>
+    {% for comment in get_comments(post.id) %}
+      <div style="border: 1px solid #ddd; padding: 8px; margin-bottom: 10px;">
+        <p style="margin: 0;"><strong>{{ comment.author_name or "Anonymous" }}</strong> - <small>{{ comment.created_at }}</small></p>
+        <p style="margin: 5px 0;">{{ comment.comment }}</p>
+        {% if session.get('user_id') and (session.get('user_id')|int == comment.user_id or session.get('rolId') == 1) %}
+          <!-- Edit and Delete buttons for comments -->
+          <a href="{{ url_for('edit_comment', comment_id=comment.id) }}">Düzenle</a> |
+          <form method="post" action="{{ url_for('delete_comment', comment_id=comment.id) }}" style="display: inline;">
+            <button type="submit" style="border: none; background: none; color: red; cursor: pointer;">Sil</button>
+          </form>
+        {% endif %}
+      </div>
+    {% else %}
+      <p>Henüz yorum yapılmamış.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Add Comment Form -->
+  {% if session.get('user_id') %}
+    <div style="margin-top:20px;">
+      <h3>Yorum Ekle</h3>
+      <form method="post" action="{{ url_for('add_comment', post_id=post.id) }}">
+        <textarea name="comment" rows="4" style="width:100%;" placeholder="Yorumunuzu buraya yazın..." required></textarea>
+        <div style="margin-top:10px;">
+          <button type="submit" style="padding: 8px 16px; background-color: #2E8B57; color: white; border: none; border-radius: 4px; cursor: pointer;">Yorumu Gönder</button>
+        </div>
+      </form>
+    </div>
+  {% else %}
+    <p style="margin-top:20px;"><a href="{{ url_for('login') }}">Giriş yaparak</a> yorum yapabilirsiniz.</p>
+  {% endif %}
+
+</div>
+{% endblock %}
