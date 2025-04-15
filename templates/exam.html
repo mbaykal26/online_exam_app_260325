@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% block title %}{{ subject }} Sınavı{% endblock %}
 {% block content %}
@@ -24,3 +25,31 @@
   </form>
 </div>
 {% endblock %}
+=======
+{% extends "base.html" %}
+{% block title %}{{ subject }} Sınavı{% endblock %}
+{% block content %}
+<div class="exam-container bg-light p-4 rounded shadow-sm" style="max-width: 800px; margin: auto;">
+  <h2 class="text-center mb-4">{{ subject }} Sınavı</h2>
+  <form method="POST" action="{{ url_for('exam', subject=subject) }}">
+    {% for soru in sorular %}
+      <div class="soru mb-4 border-bottom pb-3">
+        <p class="font-weight-bold">Soru {{ loop.index }}: {{ soru.soru_metni }}</p>
+        {% set options = [soru.secenek1, soru.secenek2, soru.secenek3, soru.secenek4] %}
+        {% for secenek in options %}
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="cevap_{{ soru.id }}" id="option_{{ soru.id }}_{{ loop.index }}" value="{{ secenek | trim }}">
+            <label class="form-check-label" for="option_{{ soru.id }}_{{ loop.index }}">
+              {{ secenek | trim }}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary btn-lg">Sınavı Bitir</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
+>>>>>>> 49ebd6bab060786ebd611b568d19bba86d77eb34

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Ana Sayfa - Online Sınav{% endblock %}
 {% block content %}
+<<<<<<< HEAD
 <div class="container mt-4">
   <!-- Welcome Banner using Bootstrap's Alert Component -->
   <div class="alert alert-info text-center" role="alert">
@@ -29,4 +30,24 @@
   <h2 class="text-center">Ana Sayfa</h2>
   <!-- Add any additional index page content here -->
 </div>
+=======
+<h2>Hoşgeldiniz!</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="{{ category }}">
+          {{ message }}
+          {% if session.get('user_name') %}
+            - {{ session['user_name'] }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+>>>>>>> 49ebd6bab060786ebd611b568d19bba86d77eb34
 {% endblock %}
