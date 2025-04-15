@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 {% block title %}Giriş - Online Sınav{% endblock %}
 {% block content %}
-<h2>Giriş Yap</h2>
+<div style="text-align:center; margin-bottom:20px;">
+  <!-- Blog butonu vurgulu, ortalanmış şekilde -->
+  <a href="{{ url_for('blog') }}" style="font-size:1.5em; font-weight:bold; color:#fff; background-color:#007BFF; padding:5px 5px; text-decoration:none; border-radius:5px;">
+    Blog'a Git
+  </a>
+</div>
+<h2 style="text-align:center;">Giriş Yap</h2>
 {% if error %}
-  <p style="color: red;">{{ error }}</p>
+  <p style="color:red; text-align:center;">{{ error }}</p>
 {% endif %}
-<form method="POST" action="{{ url_for('login') }}">
+<form method="POST" action="{{ url_for('login') }}" style="max-width:400px; margin:0 auto;">
   <p>
     <label for="email">E-posta:</label><br>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email" required style="width:100%; padding:8px;">
   </p>
   <p>
     <label for="sifre">Şifre:</label><br>
-    <input type="password" id="sifre" name="sifre" required>
+    <input type="password" id="sifre" name="sifre" required style="width:100%; padding:8px;">
   </p>
   <p>
-    <button type="submit">Giriş Yap</button>
+    <button type="submit" style="width:100%; padding:10px; font-size:1em;">Giriş Yap</button>
   </p>
 </form>
-
-
 {% endblock %}

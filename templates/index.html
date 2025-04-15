@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Ana Sayfa - Online Sınav{% endblock %}
+{% block content %}
+<h2>Hoşgeldiniz!</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="{{ category }}">
+          {{ message }}
+          {% if session.get('user_name') %}
+            - {{ session['user_name'] }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+{% endblock %}

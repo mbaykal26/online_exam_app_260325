@@ -2,9 +2,26 @@
 {% block title %}Sınav Seçimi{% endblock %}
 {% block content %}
 <h2>Sınav Konusu Seçiniz</h2>
-<ul>
+<ul style="font-size: 1.5em;">
   <li><a href="{{ url_for('exam', subject='Python') }}">Python Sınavı</a></li>
   <li><a href="{{ url_for('exam', subject='Java') }}">Java Sınavı</a></li>
-  <li><a href="{{ url_for('exam', subject='Javascript') }}">Javascript Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='JavaScript') }}">Javascript Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='C') }}">C Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='C++') }}">C++ Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='Golang') }}">Golang Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='C#') }}">C# Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='SQL') }}">SQL Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='HTML') }}">HTML Sınavı</a></li>
+  <li><a href="{{ url_for('exam', subject='CSS') }}">CSS Sınavı</a></li>
 </ul>
+
+<!-- Button to enter the game -->
+<div style="text-align: center; margin-top: 20px;">
+<a href="{{ url_for('game') }}" style="display: none; background-color: #007BFF; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-size: 1.1em;">
+  Oyun Oyna
+</a>
+
+
+</div>
+
 {% endblock %}
